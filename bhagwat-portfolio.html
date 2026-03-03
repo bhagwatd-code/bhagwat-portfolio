@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhagwat Dhanore · Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a12;
+    --bg2: #0c1220;
+    --bg3: #111827;
+    --cyan: #00e5ff;
+    --cyan2: #00b4cc;
+    --green: #00ff88;
+    --purple: #a855f7;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: rgba(0,229,255,0.12);
+    --card: rgba(12,18,32,0.8);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── CANVAS BACKGROUND ── */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(6,10,18,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--cyan);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--muted); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-content { max-width: 800px; }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--cyan);
+    background: rgba(0,229,255,0.08);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+  .hero-tag::before { content: '◆'; font-size: 0.5rem; }
+  .hero-name {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  .hero-name .cyan { color: var(--cyan); }
+  .hero-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--muted);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-title .blink {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--cyan);
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #94a3b8;
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--cyan);
+    color: #000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--cyan2); transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid rgba(0,229,255,0.35);
+    cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-secondary:hover { background: rgba(0,229,255,0.07); transform: translateY(-2px); }
+
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--cyan);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SHARED SECTION STYLES ── */
+  .section-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .section-label::before { content: '// '; }
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 3.5rem;
+    letter-spacing: -0.01em;
+  }
+  .section-divider {
+    width: 50px;
+    height: 2px;
+    background: var(--cyan);
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #94a3b8;
+    margin-bottom: 1.2rem;
+  }
+  .about-text p strong { color: var(--cyan); font-weight: 600; }
+  .about-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+  .info-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+  }
+  .info-label { color: var(--muted); min-width: 90px; }
+  .info-val { color: var(--text); }
+  .info-val a { color: var(--cyan); text-decoration: none; }
+  .info-val a:hover { text-decoration: underline; }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .cert-card {
+    background: rgba(0,229,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(0,229,255,0.4); transform: translateY(-3px); }
+  .cert-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .cert-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+  .cert-org {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .cert-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--cyan);
+    margin-top: 0.3rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+    backdrop-filter: blur(10px);
+  }
+  .skill-group:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-4px); }
+  .skill-group-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--cyan);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .skill-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+    background: rgba(0,229,255,0.06);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 2px;
+    color: #94a3b8;
+    letter-spacing: 0.04em;
+    transition: color 0.2s, background 0.2s;
+  }
+  .skill-tag:hover { color: var(--cyan); background: rgba(0,229,255,0.12); }
+  .skill-tag.primary {
+    background: rgba(0,229,255,0.12);
+    border-color: rgba(0,229,255,0.35);
+    color: var(--cyan);
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg2); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--cyan), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 3.5rem;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+  .timeline-dot {
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+  }
+  .job-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+  .job-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .job-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--cyan);
+    background: rgba(0,229,255,0.08);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.7rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .job-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+  .job-company span { color: var(--purple); }
+  .job-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .job-bullets li {
+    display: flex;
+    gap: 0.8rem;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #94a3b8;
+  }
+  .job-bullets li::before {
+    content: '▸';
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* ── PROJECTS / HIGHLIGHTS ── */
+  #projects { background: var(--bg); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: rgba(0,229,255,0.35); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .project-card:hover::after { opacity: 1; }
+  .project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.8rem;
+  }
+  .project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.8rem;
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(168,85,247,0.35);
+    color: var(--purple);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg2); }
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-left p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #64748b;
+    margin-bottom: 2rem;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    padding: 1rem 1.2rem;
+    background: rgba(0,229,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(0,229,255,0.4); transform: translateX(6px); }
+  .contact-link-icon {
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,229,255,0.08);
+    border-radius: 4px;
+  }
+  .contact-link-text { flex: 1; }
+  .contact-link-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .contact-link-val {
+    font-size: 0.88rem;
+    color: var(--text);
+    margin-top: 0.1rem;
+  }
+  .contact-link-arr { color: var(--cyan); font-size: 0.9rem; }
+
+  .contact-right {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+  }
+  .form-group { margin-bottom: 1.3rem; }
+  .form-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .form-input, .form-textarea {
+    width: 100%;
+    background: rgba(0,229,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.8rem 1rem;
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: rgba(0,229,255,0.5); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+  }
+  footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  footer span { color: var(--cyan); }
+
+  /* ── FADE IN ON SCROLL ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    #hero { padding: 7rem 1.5rem 4rem; }
+    .section-wrap { padding: 4rem 1.5rem; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    .cert-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">bhagwat<span>.dev</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities · Nashik, India</div>
+    <h1 class="hero-name">
+      Bhagwat<br><span class="cyan">Dhanore</span>
+    </h1>
+    <div class="hero-title">
+      <span id="typed-text"></span><span class="blink"></span>
+    </div>
+    <p class="hero-desc">
+      Cloud & DevOps Engineer with 4 years of hands-on experience across AWS, Azure, and GCP — from infrastructure provisioning and containerized deployments to CI/CD pipeline automation and cloud migration.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">⚡ Get In Touch</a>
+      <a href="#experience" class="btn-secondary">↓ View Work</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Cloud Platforms</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6-8</div>
+        <div class="stat-label">Enterprise Clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>I'm a <strong>Cloud & DevOps Engineer</strong> based in Nashik, Maharashtra, with deep expertise spanning AWS, Azure, and GCP. I've worked across enterprise consulting, telecom infrastructure, and early-stage cloud adoption — giving me a broad view of real-world cloud challenges.</p>
+        <p>My work covers infrastructure provisioning with Terraform, container orchestration on Kubernetes/EKS, building robust CI/CD pipelines, and integrating AI/ML services into client workflows. I care about building systems that are <strong>reliable, secure, and cost-efficient</strong>.</p>
+        <p>Certified across all three major cloud platforms, I bring both technical depth and the ability to communicate solutions clearly to stakeholders at every level — from engineers to enterprise clients.</p>
+        <div class="about-info">
+          <div class="info-row"><span class="info-label">Location</span><span class="info-val">Nashik, Maharashtra, India</span></div>
+          <div class="info-row"><span class="info-label">Email</span><span class="info-val"><a href="mailto:bdhanore26@gmail.com">bdhanore26@gmail.com</a></span></div>
+          <div class="info-row"><span class="info-label">Phone</span><span class="info-val">+91-8999019884</span></div>
+          <div class="info-row"><span class="info-label">LinkedIn</span><span class="info-val"><a href="https://linkedin.com/in/bhagwat-dhanore-285a001b3" target="_blank">bhagwat-dhanore</a></span></div>
+          <div class="info-row"><span class="info-label">Education</span><span class="info-val">B.E. Electrical Eng. · SPPU 2020</span></div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:0.15s">
+        <div class="section-label" style="margin-bottom:1.5rem">Certifications</div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-icon">☁️</div>
+            <div class="cert-name">AWS Solutions Architect Associate</div>
+            <div class="cert-org">Amazon Web Services</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🟦</div>
+            <div class="cert-name">Azure Administrator AZ-104</div>
+            <div class="cert-org">Microsoft</div>
+            <div class="cert-date">Valid: Jun 2023 – Jul 2026</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🌐</div>
+            <div class="cert-name">GCP Associate Cloud Engineer</div>
+            <div class="cert-org">Google Cloud</div>
+            <div class="cert-date">Valid: May 2025 – May 2028</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🔶</div>
+            <div class="cert-name">AWS Cloud Practitioner</div>
+            <div class="cert-org">Amazon Web Services</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🪟</div>
+            <div class="cert-name">Azure Fundamentals AZ-900</div>
+            <div class="cert-org">Microsoft</div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">☕</div>
+            <div class="cert-name">Advanced Diploma · Java Technologies</div>
+            <div class="cert-org">Profound Educate, Nashik</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-label">Technical Stack</div>
+    <h2 class="section-title">Skills & Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-group fade-up">
+        <div class="skill-group-title">☁️ &nbsp;Primary Stack</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">AWS EC2</span>
+          <span class="skill-tag primary">S3</span>
+          <span class="skill-tag primary">VPC</span>
+          <span class="skill-tag primary">EKS</span>
+          <span class="skill-tag primary">IAM</span>
+          <span class="skill-tag primary">CloudWatch</span>
+          <span class="skill-tag primary">Lambda</span>
+          <span class="skill-tag primary">Docker</span>
+          <span class="skill-tag primary">Kubernetes</span>
+          <span class="skill-tag primary">Jenkins</span>
+          <span class="skill-tag primary">Git</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:0.1s">
+        <div class="skill-group-title">🔧 &nbsp;IaC & Automation</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">Terraform</span>
+          <span class="skill-tag primary">Ansible</span>
+          <span class="skill-tag primary">GitHub Actions</span>
+          <span class="skill-tag">Maven</span>
+          <span class="skill-tag">Shell Scripting</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:0.2s">
+        <div class="skill-group-title">🌐 &nbsp;Cloud Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">Azure AKS</span>
+          <span class="skill-tag primary">Azure AD</span>
+          <span class="skill-tag">Azure IaaS/PaaS</span>
+          <span class="skill-tag">Azure Monitor</span>
+          <span class="skill-tag">GCP GKE</span>
+          <span class="skill-tag">Cloud Run</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:0.3s">
+        <div class="skill-group-title">🤖 &nbsp;AI/ML Services</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS SageMaker</span>
+          <span class="skill-tag">AWS Bedrock</span>
+          <span class="skill-tag">AWS Comprehend</span>
+          <span class="skill-tag">Azure AI Services</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:0.15s">
+        <div class="skill-group-title">📊 &nbsp;Monitoring</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">AWS CloudWatch</span>
+          <span class="skill-tag primary">Azure Monitor</span>
+          <span class="skill-tag">Prometheus (basic)</span>
+          <span class="skill-tag">Grafana (basic)</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:0.25s">
+        <div class="skill-group-title">🔒 &nbsp;Security & Architecture</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS IAM</span>
+          <span class="skill-tag">RBAC</span>
+          <span class="skill-tag">Azure AD</span>
+          <span class="skill-tag">VPC</span>
+          <span class="skill-tag">Security Groups</span>
+          <span class="skill-tag">MFA</span>
+          <span class="skill-tag">Encryption</span>
+          <span class="skill-tag">Microservices</span>
+          <span class="skill-tag">HA/DR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="job-meta">
+          <div class="job-title">Cloud Consultant</div>
+          <div class="job-period">Jul 2024 – Present</div>
+        </div>
+        <div class="job-company">ESDS Software Solutions &nbsp;·&nbsp; <span>Nashik, India</span></div>
+        <ul class="job-bullets">
+          <li>Designed and delivered cloud solutions for 6–8 enterprise clients on AWS, Azure, and GCP — covering microservices, event-driven, and hybrid cloud architectures aligned to business requirements.</li>
+          <li>Implemented Terraform-based IaC modules for infrastructure provisioning, reducing environment setup from manual (2–3 days) to under a day for standard workloads.</li>
+          <li>Built CI/CD pipelines using Jenkins, GitHub Actions, and Ansible — enabling faster, more consistent deployments and reducing release-related manual steps significantly.</li>
+          <li>Containerized and deployed applications on Kubernetes/EKS; configured HPA and resource limits to improve resource efficiency and maintain service availability.</li>
+          <li>Integrated AWS AI/ML services (SageMaker, Bedrock, Comprehend) into client workflows for document processing and analytics automation.</li>
+          <li>Led cloud migration of 3–4 legacy on-premise applications to cloud-native architecture, handling assessment, planning, and delivery within a cross-functional team of 6.</li>
+          <li>Prepared Azure IaaS/PaaS architecture proposals, RFP/RFQ documentation, and PoC presentations for pre-sales engagements.</li>
+          <li>Implemented IAM policies, RBAC, network security groups, and encryption controls across client cloud environments.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="job-meta">
+          <div class="job-title">Cloud Engineer</div>
+          <div class="job-period">Mar 2023 – Jul 2024</div>
+        </div>
+        <div class="job-company">Reliance Jio &nbsp;·&nbsp; <span>Mumbai, India</span></div>
+        <ul class="job-bullets">
+          <li>Managed cloud infrastructure on AWS and Azure supporting production workloads; maintained 99.9%+ uptime through CloudWatch/Azure Monitor alerting and structured incident response.</li>
+          <li>Wrote Terraform and Ansible scripts for automated provisioning of VMs, VPCs, storage, and load balancers — reducing manual effort and minimizing configuration inconsistencies.</li>
+          <li>Deployed and maintained Kubernetes clusters for containerized services; applied autoscaling configurations and resource quotas to handle traffic spikes without over-provisioning.</li>
+          <li>Maintained CI/CD pipelines (Git, Jenkins) across multiple development teams, supporting daily deployments with reduced manual intervention.</li>
+          <li>Administered IAM and Active Directory policies across AWS and Azure; enforced least-privilege access, conducted periodic access reviews, and resolved flagged findings from security audits.</li>
+          <li>Used AWS Cost Explorer and rightsizing analysis to identify underutilized resources; contributed to cloud cost reduction initiatives across managed accounts.</li>
+          <li>Documented runbooks, deployment procedures, and configuration guides; collaborated on L1/L2 issue resolution and post-incident reviews.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="job-meta">
+          <div class="job-title">Trainee Cloud Engineer</div>
+          <div class="job-period">Mar 2022 – Feb 2023</div>
+        </div>
+        <div class="job-company">NSEIT Limited &nbsp;·&nbsp; <span>Pune, India</span></div>
+        <ul class="job-bullets">
+          <li>Set up and managed AWS environments (EC2, S3, VPC, IAM, Security Groups) for production and staging workloads under senior engineer guidance.</li>
+          <li>Monitored infrastructure using AWS CloudWatch; created dashboards and alarms to track resource health and escalate incidents per defined thresholds.</li>
+          <li>Supported IAM policy management, MFA enforcement, and encryption configuration; used AWS Cost Explorer for basic cost tracking and rightsizing inputs.</li>
+          <li>Assisted in Git-based CI/CD deployments; wrote SOPs and deployment documentation to support team knowledge sharing and onboarding.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS / KEY HIGHLIGHTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-label">Key Highlights</div>
+    <h2 class="section-title">Notable Work</h2>
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="project-num">01 / INFRASTRUCTURE</div>
+        <div class="project-title">Terraform IaC Automation Framework</div>
+        <div class="project-desc">Built reusable Terraform modules for multi-cloud infrastructure provisioning, cutting environment setup time from 2–3 days to under a day for standard enterprise workloads.</div>
+        <div class="project-tags">
+          <span class="project-tag">Terraform</span>
+          <span class="project-tag">AWS</span>
+          <span class="project-tag">Azure</span>
+          <span class="project-tag">IaC</span>
+        </div>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.1s">
+        <div class="project-num">02 / DEVOPS</div>
+        <div class="project-title">Enterprise CI/CD Pipeline Architecture</div>
+        <div class="project-desc">Designed and implemented end-to-end CI/CD pipelines using Jenkins, GitHub Actions, and Ansible — enabling consistent, automated deployments across multiple client environments.</div>
+        <div class="project-tags">
+          <span class="project-tag">Jenkins</span>
+          <span class="project-tag">GitHub Actions</span>
+          <span class="project-tag">Ansible</span>
+          <span class="project-tag">Docker</span>
+        </div>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.2s">
+        <div class="project-num">03 / CLOUD MIGRATION</div>
+        <div class="project-title">Legacy-to-Cloud Migration</div>
+        <div class="project-desc">Led migration of 3–4 legacy on-premise applications to cloud-native architecture on AWS/Azure — handling full lifecycle from assessment and planning to delivery within a cross-functional team.</div>
+        <div class="project-tags">
+          <span class="project-tag">AWS</span>
+          <span class="project-tag">Azure</span>
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">EKS</span>
+        </div>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.15s">
+        <div class="project-num">04 / AI/ML INTEGRATION</div>
+        <div class="project-title">AI-Powered Document Processing</div>
+        <div class="project-desc">Integrated AWS AI/ML services (SageMaker, Bedrock, Comprehend) into enterprise client workflows for intelligent document processing and analytics automation.</div>
+        <div class="project-tags">
+          <span class="project-tag">SageMaker</span>
+          <span class="project-tag">AWS Bedrock</span>
+          <span class="project-tag">Comprehend</span>
+          <span class="project-tag">Automation</span>
+        </div>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.25s">
+        <div class="project-num">05 / RELIABILITY</div>
+        <div class="project-title">99.9%+ Uptime Infrastructure · Reliance Jio</div>
+        <div class="project-desc">Managed production cloud infrastructure at scale, maintaining high availability through structured alerting, autoscaling Kubernetes clusters, and rigorous incident response procedures.</div>
+        <div class="project-tags">
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">CloudWatch</span>
+          <span class="project-tag">Azure Monitor</span>
+          <span class="project-tag">HA/DR</span>
+        </div>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.3s">
+        <div class="project-num">06 / SECURITY</div>
+        <div class="project-title">Cloud Security & IAM Hardening</div>
+        <div class="project-desc">Implemented IAM policies, RBAC, network security groups, and encryption controls across enterprise cloud environments. Conducted periodic access reviews and resolved security audit findings.</div>
+        <div class="project-tags">
+          <span class="project-tag">IAM</span>
+          <span class="project-tag">RBAC</span>
+          <span class="project-tag">Azure AD</span>
+          <span class="project-tag">VPC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="contact-wrap">
+      <div class="contact-left fade-up">
+        <p>I'm open to Cloud Engineer and DevOps roles across India. Whether you have a specific opportunity, a project, or just want to chat about cloud infrastructure — feel free to reach out.</p>
+        <div class="contact-links">
+          <a href="mailto:bdhanore26@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-val">bdhanore26@gmail.com</div>
+            </div>
+            <div class="contact-link-arr">→</div>
+          </a>
+          <a href="tel:+918999019884" class="contact-link">
+            <div class="contact-link-icon">📱</div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">Phone</div>
+              <div class="contact-link-val">+91-8999019884</div>
+            </div>
+            <div class="contact-link-arr">→</div>
+          </a>
+          <a href="https://linkedin.com/in/bhagwat-dhanore-285a001b3" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-val">bhagwat-dhanore-285a001b3</div>
+            </div>
+            <div class="contact-link-arr">→</div>
+          </a>
+          <div class="contact-link" style="cursor:default">
+            <div class="contact-link-icon">📍</div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">Location</div>
+              <div class="contact-link-val">Nashik, Maharashtra, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right fade-up" style="transition-delay:0.15s">
+        <div class="section-label" style="margin-bottom:1.5rem">Send a Message</div>
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="e.g. Riya Mehta">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Email</label>
+          <input type="email" class="form-input" placeholder="you@company.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Hi Bhagwat, I'd love to connect about..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="handleSend()" style="width:100%;justify-content:center">⚡ Send Message</button>
+        <div id="form-msg" style="margin-top:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--green);display:none">
+          ✓ Message sent — I'll get back to you soon!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built for <span>Bhagwat Dhanore</span> &nbsp;·&nbsp; Cloud &amp; DevOps Engineer &nbsp;·&nbsp; Nashik, India</p>
+</footer>
+
+<script>
+// ── CANVAS PARTICLE GRID ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [], mouseX = -9999, mouseY = -9999;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+// Build grid of dots
+function buildGrid() {
+  particles = [];
+  const gap = 80;
+  for (let x = 0; x < W + gap; x += gap) {
+    for (let y = 0; y < H + gap; y += gap) {
+      particles.push({ x, y, ox: x, oy: y, vx: 0, vy: 0, alpha: Math.random() * 0.3 + 0.05 });
+    }
+  }
+}
+buildGrid();
+window.addEventListener('resize', buildGrid);
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  const now = Date.now() * 0.001;
+  particles.forEach(p => {
+    const dx = mouseX - p.x, dy = mouseY - p.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const force = Math.max(0, 120 - dist) / 120;
+    p.vx += (-dx / dist || 0) * force * 0.8;
+    p.vy += (-dy / dist || 0) * force * 0.8;
+    p.vx *= 0.92; p.vy *= 0.92;
+    p.x += p.vx + (p.ox - p.x) * 0.05;
+    p.y += p.vy + (p.oy - p.y) * 0.05;
+    const pulse = Math.sin(now * 0.7 + p.ox * 0.02 + p.oy * 0.015) * 0.15 + 0.15;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,229,255,${(p.alpha + pulse) * (force > 0.05 ? 2.5 : 1)})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ── TYPEWRITER ──
+const phrases = [
+  'Cloud Engineer · DevOps Engineer',
+  'AWS · Azure · GCP',
+  'Terraform · Kubernetes · CI/CD',
+  'Infrastructure as Code Practitioner'
+];
+let pi = 0, ci = 0, del = false;
+const el = document.getElementById('typed-text');
+function type() {
+  const phrase = phrases[pi];
+  if (!del) {
+    el.textContent = phrase.slice(0, ++ci);
+    if (ci === phrase.length) { del = true; setTimeout(type, 1800); return; }
+    setTimeout(type, 55);
+  } else {
+    el.textContent = phrase.slice(0, --ci);
+    if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; setTimeout(type, 400); return; }
+    setTimeout(type, 30);
+  }
+}
+type();
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up, .timeline-item').forEach(el => observer.observe(el));
+
+// ── FORM ──
+function handleSend() {
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'block';
+  setTimeout(() => { msg.style.display = 'none'; }, 4000);
+}
+</script>
+</body>
+</html>
